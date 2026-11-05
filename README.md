@@ -14,10 +14,10 @@ El objetivo principal es hacer una aplicación web interactiva para calcular la 
 La solución consiste en un script llamado `app.py` que funciona de la siguiente manera: primero, le damos al usuario la opción de trabajar con datos generados de forma simulada, donde se parte de los valores β₀ = 5 y β₁ = 2.5 a los que se les añade ruido aleatorio, o bien cargar su propio archivo CSV, y luego elegir qué columnas serán la variable independiente X y cuál será la variable dependiente Y. Antes de seguir, el programa hace varias comprobaciones importantes: verifica que tengamos al menos tres registros válidos, que las columnas elegidas sean distintas y que la matriz producto de transponer X y multiplicarla por sí misma tenga matriz inversa, todo esto para evitar que el código falle al hacer los cálculos. Después de pasar esas revisiones, se arma la matriz de diseño y se calculan los coeficientes β₀ y β₁ usando operaciones matriciales tal como lo pide el método de mínimos cuadrados ordinarios. Una vez obtenidos los valores, se calculan medidas para evaluar qué tan bien funciona el modelo, como el coeficiente de determinación R² y el error cuadrático medio MSE, además de calcular los residuos y explicar de forma clara qué significa el valor de la pendiente que obtuvimos. Para confirmar que todo está bien, se incluye una tabla que compara nuestros resultados con los que da la función `np.polyfit`, calculando la diferencia entre ambos valores; es importante aclarar que usamos esa función solo como referencia para verificar que nuestro cálculo es correcto y no para obtener los coeficientes del modelo. Por último, el programa muestra dos gráficas: una con los puntos de los datos y la recta que se ajusta a ellos, y otra donde se representan los residuos frente a los valores que el modelo predice, lo que nos ayuda a darnos cuenta si usar una recta es realmente una buena opción para describir la relación entre las variables que estamos analizando.
 
 ## 5. Conclusiones
- # Conclusiones generales: 
+ #### Conclusiones generales: 
 Con este proyecto vimos que sí se pueden hacer herramientas econométricas claras y confiables usando código abierto y librerías básicas de Python, sin depender de software comercial caro, y entendiendo paso a paso cómo se calculan los resultados.
 
- # Conclusiones particulares:
+ #### Conclusiones particulares:
 
 En cuanto a cada integrante:
 Con los datos simulados, la app recupera valores muy cercanos a los reales (β₀ = 5 y β₁ = 2.5). Eso muestra que el método funciona, y la diferencia que queda se debe al ruido aleatorio.
@@ -54,10 +54,10 @@ Una recomendación: Crear un entorno virtual para no mezclar librerías con otro
 Activarlo:
 
 
-   # En Windows
+   ### En Windows
    venv\Scripts\activate
 
-   # En Mac o Linux
+   ### En Mac o Linux
    source venv/bin/activate
 Instalar las dependencias:
 
