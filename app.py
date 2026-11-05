@@ -6,9 +6,7 @@ import streamlit as st
 st.title("Calculadora de Mínimos Cuadrados Ordinarios (MCO) desde cero")
 st.markdown("Regresión lineal simple calculada con álgebra matricial: β = (XᵀX)⁻¹ XᵀY")
 
-# ---------------------------------------------------------------
-# 1. DATOS
-# ---------------------------------------------------------------
+
 st.sidebar.header("Configuración de datos")
 option = st.sidebar.selectbox(
     "Selecciona una fuente de datos:",
@@ -29,20 +27,20 @@ else:
         st.stop()
     df = pd.read_csv(uploaded_file)
 
-# Solo columnas numéricas
+
 df_num = df.select_dtypes(include="number")
 if df_num.shape[1] < 2:
     st.error("El archivo necesita al menos dos columnas numéricas.")
     st.stop()
 
-# El usuario elige cuál es X y cuál es Y
+
 col_x = st.sidebar.selectbox("Variable independiente (X)", df_num.columns, index=0)
 col_y = st.sidebar.selectbox("Variable dependiente (Y)", df_num.columns, index=1)
 if col_x == col_y:
     st.error("X e Y deben ser columnas distintas.")
     st.stop()
 
-# Quitar filas con datos faltantes
+
 datos = df_num[[col_x, col_y]].dropna()
 if len(datos) < 3:
     st.error("Se necesitan al menos 3 datos válidos para ajustar la recta.")
@@ -55,9 +53,7 @@ st.caption(f"Datos usados: {len(datos)} filas")
 X_data = datos[col_x].to_numpy(dtype=float)
 Y_data = datos[col_y].to_numpy(dtype=float)
 
-# ---------------------------------------------------------------
-# 2. MCO DESDE CERO
-# ---------------------------------------------------------------
+
 X_matrix = np.column_stack([np.ones(len(X_data)), X_data])  # columna de unos + X
 Y_matrix = Y_data.reshape(-1, 1)
 
@@ -70,7 +66,7 @@ beta = np.linalg.inv(XT_X) @ X_matrix.T @ Y_matrix
 beta_0 = beta[0, 0]
 beta_1 = beta[1, 0]
 
-# Predicciones, residuos y métricas
+
 Y_pred = (X_matrix @ beta).flatten()
 residuos = Y_data - Y_pred
 ss_total = np.sum((Y_data - Y_data.mean()) ** 2)
@@ -90,9 +86,7 @@ st.info(
     f"**{col_y}** cambia en promedio **{beta_1:.4f}** unidades."
 )
 
-# ---------------------------------------------------------------
-# 3. VERIFICACIÓN CONTRA NUMPY
-# ---------------------------------------------------------------
+
 st.subheader("3. Verificación contra una biblioteca")
 pend_np, inter_np = np.polyfit(X_data, Y_data, 1)
 verif = pd.DataFrame(
@@ -109,9 +103,7 @@ if np.allclose([beta_0, beta_1], [inter_np, pend_np]):
 else:
     st.warning("Los resultados difieren de np.polyfit; revisa los datos.")
 
-# ---------------------------------------------------------------
-# 4. GRÁFICAS
-# ---------------------------------------------------------------
+
 st.subheader("4. Dispersión y recta de mínimos cuadrados")
 orden = np.argsort(X_data)
 fig, ax = plt.subplots(figsize=(8, 5))
