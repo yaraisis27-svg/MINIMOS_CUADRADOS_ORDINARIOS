@@ -107,7 +107,7 @@ else:
 st.subheader("4. Dispersión y recta de mínimos cuadrados")
 orden = np.argsort(X_data)
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.scatter(X_data, Y_data, color="blue", label="Datos reales", alpha=0.7)
+ax.scatter(X_data, Y_data, color="blue", label="Datos de entrada", alpha=0.7)
 ax.plot(X_data[orden], Y_pred[orden], color="red", linewidth=2,
         label=f"MCO: Y = {beta_0:.2f} + {beta_1:.2f}X")
 ax.set_xlabel(col_x)
