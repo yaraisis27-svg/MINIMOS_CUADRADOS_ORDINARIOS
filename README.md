@@ -1,4 +1,4 @@
-# Calculadora MCO con Streamlit, valores p y descargas
+# Calculadora MCO con Streamlit, valores P y descargas
 
 Aplicación web para estimar una regresión lineal simple por **Mínimos Cuadrados Ordinarios (MCO)**. Los coeficientes se calculan desde cero con álgebra matricial y NumPy; `statsmodels` se usa como complemento para la inferencia estadística.
 
